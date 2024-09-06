@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Salon Payment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Product Details</h2>
+        <div class="product-details-section">
+            <div class="product-details">
+                <img src="one.jfif" alt="Product Image" class="product-image">
+                <div class="product-info">
+                    <h3>Product Name</h3>
+                    <p><strong>Quantity:</strong> 1</p>
+                    <p><strong>Total Amount:</strong> $<span id="product-amount">250</span></p>
+                </div>
+            </div>
+            <div class="product-details-section">
+                <div class="product-details">
+                    <img src="one.jfif" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h3>Product Name</h3>
+                        <p><strong>Quantity:</strong> 1</p>
+                        <p><strong>Total Amount:</strong> $<span id="product-amount">250</span></p>
+                    </div>
+                    
+                </div>
+        </div>
+
+        <div class="payment-section">
+            <h1>Complete Your Payment</h1>
+            <p>Fill in your payment details to complete the transaction.</p>
+            <div class="payment-box">
+                <form id="payment-form" action="process-payment" method="POST">
+                    <div class="amount-section">
+                        <h2>Total Amount: $<span id="total-amount">250</span></h2>
+                    </div>
+
+                    <div class="payment-options-section">
+                        <h2>Payment Options</h2>
+                        <div class="payment-options">
+                            <div class="option">
+                                <input type="radio" id="cod" name="payment_method" value="cod" required>
+                                <label for="cod">Cash on Delivery (COD)</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" id="online" name="payment_method" value="online">
+                                <label for="online">Online Payment (Credit/Debit Card)</label>
+                            </div>
+                            
+                            <div class="option">
+                                <input type="radio" id="upi" name="payment_method" value="upi">
+                                <label for="upi">UPI Payment</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Details Section -->
+                    <div class="payment-details" id="online-payment-section">
+                        <h3>Card Payment Details</h3>
+                        <label for="cardholder-name">Cardholder Name</label>
+                        <input type="text" id="cardholder-name" name="cardholder_name" required>
+
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" name="card_number" pattern="[0-9]{13,16}" required>
+
+                        <label for="expiry-date">Expiry Date</label>
+                        <input type="month" id="expiry-date" name="expiry_date" required>
+
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" name="cvv" pattern="[0-9]{3}" required>
+                    </div>
+
+                    <!-- UPI Details Section -->
+                    <div class="payment-details" id="upi-payment-section">
+                        <h3>UPI Payment Details</h3>
+                        <label for="upi-service">Select UPI Service</label>
+                        <select id="upi-service" name="upi_service" required>
+                            <option value="">-- Select UPI Service --</option>
+                            <option value="googlepay">Google Pay</option>
+                            <option value="phonepe">PhonePe</option>
+                            <option value="other">Other UPI Apps</option>
+                        </select>
+
+                        <label for="upi-id">UPI ID</label>
+                        <input type="text" id="upi-id" name="upi_id" required>
+                    </div>
+
+                    <!-- COD Address Section -->
+                    <div class="payment-details" id="cod-section">
+                        <h3>Delivery Address</h3>
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" required>
+
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" required>
+
+                        <label for="postal-code">Postal Code</label>
+                        <input type="text" id="postal-code" name="postal_code" required>
+
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="country" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Complete Payment</button>
+                </form>
+            </div>
+
+            <div id="payment-summary" class="hidden">
+                <h2>Payment Receipt</h2>
+                <div class="summary-content">
+                    <p><strong>Total Amount Paid:</strong> $<span id="summary-amount">250</span></p>
+                    <p><strong>Payment Method:</strong> <span id="summary-method"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('payment-form').addEventListener('change', function(event) {
+            var codSection = document.getElementById('cod-section');
+            var onlineSection = document.getElementById('online-payment-section');
+            var upiSection = document.getElementById('upi-payment-section');
+
+            codSection.style.display = 'none';
+            onlineSection.style.display = 'none';
+            upiSection.style.display = 'none';
+
+            if (document.getElementById('cod').checked) {
+                codSection.style.display = 'block';
+            } else if (document.getElementById('online').checked) {
+                onlineSection.style.display = 'block';
+            } else if (document.getElementById('upi').checked) {
+                upiSection.style.display = 'block';
+            }
+        });
+
+        // Submit form event handler for the demo
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            var paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+            var amount = document.getElementById('total-amount').textContent;
+
+            document.getElementById('summary-amount').textContent = amount;
+            document.getElementById('summary-method').textContent = paymentMethod === 'online' ? 'Online Payment' :
+                paymentMethod === 'cod' ? 'Cash on Delivery (COD)' :
+                'UPI Payment via ' + document.getElementById('upi-service').selectedOptions[0].text;
+
+            document.getElementById('payment-summary').classList.remove('hidden');
+            document.querySelector('.payment-box').classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
