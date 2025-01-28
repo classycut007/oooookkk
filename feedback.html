@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobHierance - Your Career Starts Here</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #021526;
+            --secondary-color: #6EACDA;
+            --accent-color: #E2E2B6;
+            --button-color: #03346E;
+            --background-color-light: #f7f9fc;
+            --background-color-dark: #f9f9f9;
+            --text-color: #333;
+            --text-color-light: #555;
+            --hover-color: #6EACDA;
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, var(--background-color-dark), var(--background-color-light));
+            color: var(--text-color);
+        }
+
+        .feedback-and-rating-section {
+            margin-top: 80px;
+            padding: 60px 20px;
+            background: linear-gradient(145deg, var(--background-color-light), var(--background-color-dark));
+        }
+
+        .feedback-and-rating-container {
+            max-width: 700px;
+            margin: auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .feedback-and-rating-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .feedback-and-rating-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color-light);
+        }
+
+        .feedback-and-rating-rating-container {
+            margin: 20px 0;
+        }
+
+        .feedback-and-rating-rating-stars {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 2rem;
+            color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        .feedback-and-rating-rating-stars .feedback-and-rating-star {
+            transition: transform 0.2s, color 0.3s;
+        }
+
+        .feedback-and-rating-rating-stars .feedback-and-rating-star:hover {
+            transform: scale(1.2);
+        }
+
+        .feedback-and-rating-rating-stars .feedback-and-rating-star.active {
+            color: var(--secondary-color);
+        }
+
+        .feedback-and-rating-message {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: 20px;
+            resize: none;
+            outline: none;
+        }
+
+        .feedback-and-rating-submit-btn {
+            background: var(--button-color);
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 51, 110, 0.3);
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .feedback-and-rating-submit-btn:hover {
+            background: var(--hover-color);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .feedback-and-rating-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Job<span>Hierance</span></h1>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="job.html">Jobs</a>
+                <a href="companie.html">Companies</a>
+            </nav>
+    
+            <div class="menu-wrapper">
+                <!-- User Icon -->
+                <div class="user-icon" id="user-icon">
+                  <a href="Emp_Profile.html"> 
+                    <img src="assets/photos/image1.jpg" alt="User Icon" />
+                  </a>
+                </div>
+    
+                <!-- Hamburger Menu Toggle -->
+                <div class="toggle-button" id="toggle-button">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>    
+
+        <!-- Account Settings Sidebar -->
+    <div id="account-sidebar" class="account-sidebar">
+        <div class="sidebar-content">
+            <h2>Account</h2>
+            <ul>
+                <li><a href="Emp_Profile.html">Your Profile</a></li>
+                <li><a href="post-job.html">Post a Job</a></li>
+                <li><a href="myjobs.html">My Jobs</a></li>
+                <li><a href="jobs_applied.html">Jobs Applied</a></li>
+                <li><a href="saved_job.html">Saved Jobs</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+                <li><a href="#Settings">Settings</a></li>
+                <li><a href="#logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    </header>
+
+        <!-- Feedback Section -->
+    <section class="feedback-and-rating-section">
+        <div class="feedback-and-rating-container">
+            <h2 class="feedback-and-rating-title">We Value Your Feedback</h2>
+            <p class="feedback-and-rating-subtitle">Please rate your experience and leave your comments below.</p>
+
+            <div class="feedback-and-rating-rating-container">
+                <div class="feedback-and-rating-rating-stars" id="feedback-and-rating-stars">
+                    <span class="feedback-and-rating-star" data-value="1">&#9733;</span>
+                    <span class="feedback-and-rating-star" data-value="2">&#9733;</span>
+                    <span class="feedback-and-rating-star" data-value="3">&#9733;</span>
+                    <span class="feedback-and-rating-star" data-value="4">&#9733;</span>
+                    <span class="feedback-and-rating-star" data-value="5">&#9733;</span>
+                </div>
+                <p id="feedback-and-rating-text">Rate our service</p>
+            </div>
+
+            <textarea class="feedback-and-rating-message" placeholder="Leave your feedback here..."></textarea>
+
+            <button class="feedback-and-rating-submit-btn">Submit Feedback</button>
+        </div>
+    </section>
+
+
+
+<!-- footer  -->
+<footer class="modern-footer">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <h1>JobHierance</h1>
+        <p>Your career starts here. We connect job seekers with opportunities worldwide.</p>
+      </div>
+      <div class="footer-links">
+        <div class="links-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="links-column">
+          <h3>Need help ?</h3>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="links-column">
+          <h3>Follow Us</h3>
+          <ul class="social-links">
+            <li><a href="#" class="linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+            <li><a href="#" class="twitter"><i class="fab fa-twitter"></i> Twitter</a></li>
+            <li><a href="#" class="instagram"><i class="fab fa-instagram"></i> Instagram</a></li>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="subscription">
+        <p>Stay Updated</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+    </div>
+      <div class="footer-info">
+        <p>&copy; 2024 JobHierance. All rights reserved.</p>
+      </div>
+  </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const stars = document.querySelectorAll(".feedback-and-rating-star");
+            const ratingText = document.getElementById("feedback-and-rating-text");
+
+            let currentRating = 0;
+
+            const ratingsText = {
+                1: "Bad 🙁",
+                2: "Poor 😕",
+                3: "Average 😐",
+                4: "Good 😊",
+                5: "Excellent 😍"
+            };
+
+            stars.forEach((star, index) => {
+                star.addEventListener("mouseover", () => {
+                    highlightStars(index + 1);
+                });
+
+                star.addEventListener("mouseout", () => {
+                    highlightStars(currentRating);
+                });
+
+                star.addEventListener("click", () => {
+                    currentRating = index + 1;
+                    ratingText.textContent = ratingsText[currentRating] || "Rate our service";
+                });
+            });
+
+            function highlightStars(rating) {
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.classList.add("active");
+                    } else {
+                        star.classList.remove("active");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
